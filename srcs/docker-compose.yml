@@ -1,25 +1,26 @@
-version: '3'
+version: '3.5'
 
-# volumes:
-#   wordpress:
-#     name: wordpress
-#     driver: local           #THIS
-#     driver_opts:
-#       device: /var/www/html
-#       o: bind
-#       type: none
-#   mariadb:
-#     name: mariadb
-#     driver: local            #THIS
-#     driver_opts:
-#       device: /var/lib/mysql
-#       o: bind
-#       type: none
+volumes:
+  wordpress:
+    name: wordpress
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/leklund/data/html
+  mariadb:
+    name: mariadb
+    driver_opts:
+      type: none
+      o: bind
+      device: /var/leklund/data/mysql
 
-# networks:            #THIS
+# networks:
 #   network:
 #     name: inception-network
-#     driver: bridge            #THIS
+
+
+networks:
+  inception-network:
 
 
 services:
@@ -27,40 +28,40 @@ services:
     container_name: nginx
     build: ./requirements/nginx/.
     image: nginx:leklund
-    # depends_on:
-    #   - wordpress
+    depends_on:
+      - wordpress
     ports:
       - "443:443"
     env_file:
       - .env
     restart: always
-    # networks:
-    #   - network             #THIS
+    networks:
+      - inception-network
     volumes:
-      - wordpress/var/www/html #THIS
+      - wordpress:/var/www/html
 
-  # wordpress:
-  #   conatiner_name: wordpress
-  #   image: wordpress:leklund
-  #   depends_on:
-  #     - mariadb
-  #   build: ./requirements/wordpress/.
-  #   restart: always
-  #   env_file:
-  #     - .env
-  #   networks:
-  #     - network             #THIS
-  #   volumes:
-  #     - wordpress:/var/www/html #THIS
+  wordpress:
+    container_name: wordpress
+    image: wordpress:leklund
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress/.
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - inception-network
+    volumes:
+      - wordpress:/var/www/html
 
-  # mariadb:
-  #   conatiner_name: mariadb
-  #   image: mariadb:leklund
-  #   build: ./requirements/mariadb/.
-  #   restart: always
-  #   env_file:
-  #     - .env
-  #   networks:
-  #     - network             #THIS
-  #   volumes:
-  #     - mariadb:/var/lib/mysql #THIS
+  mariadb:
+    container_name: mariadb
+    image: mariadb:leklund
+    build: ./requirements/mariadb/.
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - inception-network
+    volumes:
+      - mariadb:/var/lib/mysql

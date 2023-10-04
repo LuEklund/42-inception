@@ -1,4 +1,10 @@
 all:
+	@if [ ! -d "/var/leklund/data/mysql" ]; then \
+		sudo mkdir -p /var/leklund/data/mysql; \
+	fi
+	@if [ ! -d "/var/leklund/data/html" ]; then \
+		sudo mkdir -p /var/leklund/data/html; \
+	fi
 	sudo docker-compose -f ./srcs/docker-compose.yml up -d
 
 down:

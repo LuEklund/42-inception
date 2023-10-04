@@ -8,7 +8,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 	-out /etc/nginx/ssl/certificate.crt \
 	-subj "/C=FI/ST=Helsinki/L=Helsiniki/O=Hive/OU=leklund/CN=leklund/"
 
-COPY tools/index.html /usr/share/nginx/html
+# COPY tools/index.html /usr/share/nginx/html
 COPY tools/default /etc/nginx/sites-available/default
 COPY tools/nginx.conf /etc/nginx/nginx
 
