@@ -9,7 +9,7 @@ cd /var/www/html
 rm -rf *
 
 #execute only if wordpress is not installed
-if [ ! -f /var/www/wordpress/wp-config.php ]; then
+if [ ! -f /var/www/html/wp-config.php ]; then
 
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
 
@@ -48,5 +48,5 @@ if [ ! -f /var/www/wordpress/wp-config.php ]; then
 
 fi
 
-#start the PHP-FPM (FastCGI Process Manager) service for PHP version 7.3 in foreground mode
+#start the PHP-FPM (FastCGI Process Manager) service for PHP version 7.4 in foreground mode
 /usr/sbin/php-fpm7.4 -F

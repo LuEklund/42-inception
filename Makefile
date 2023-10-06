@@ -1,9 +1,9 @@
 all:
-	@if [ ! -d "/var/leklund/data/mysql" ]; then \
-		sudo mkdir -p /var/leklund/data/mysql; \
+	@if [ ! -d "/home/leklund/data/mysql" ]; then \
+		sudo mkdir -p /home/leklund/data/mysql; \
 	fi
-	@if [ ! -d "/var/leklund/data/html" ]; then \
-		sudo mkdir -p /var/leklund/data/html; \
+	@if [ ! -d "/home/leklund/data/html" ]; then \
+		sudo mkdir -p /home/leklund/data/html; \
 	fi
 	sudo docker-compose -f ./srcs/docker-compose.yml up -d
 
@@ -14,15 +14,15 @@ clean:
 	sudo docker-compose -f ./srcs/docker-compose.yml down --rmi all -v
 
 fclean: clean
-	@if [ -d "/var/leklund/data" ]; then \
-	sudo rm -rf /var/leklund/data/* && \
-	echo "successfully removed all contents from /var/leklund/data"; \
+	@if [ -d "/home/leklund/data" ]; then \
+	sudo rm -rf /home/leklund/data/* && \
+	echo "successfully removed all contents from /home/leklund/data"; \
 	fi;
 
 prune:
 	sudo docker system prune --all --force --volumes
 
-re: fclean all
+re: fclean prune all
 
 info:
 		@echo "=============================== IMAGES ==============================="

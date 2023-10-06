@@ -6,13 +6,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /var/leklund/data/html
+      device: /home/leklund/data/html
   mariadb:
     name: mariadb
     driver_opts:
       type: none
       o: bind
-      device: /var/leklund/data/mysql
+      device: /home/leklund/data/mysql
 
 networks:
   inception-network:
