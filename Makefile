@@ -19,6 +19,9 @@ fclean: clean
 	echo "successfully removed all contents from /var/leklund/data"; \
 	fi;
 
+prune:
+	sudo docker system prune --all --force --volumes
+
 re: fclean all
 
 info:

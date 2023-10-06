@@ -49,4 +49,4 @@ if [ ! -f /var/www/wordpress/wp-config.php ]; then
 fi
 
 #start the PHP-FPM (FastCGI Process Manager) service for PHP version 7.3 in foreground mode
-/usr/sbin/php-fpm7.3 -F
+/usr/sbin/php-fpm7.4 -F
