@@ -6,9 +6,10 @@ chmod -R 775 /var/www/html
 if [ -f "wp-config.php" ]; then
 	echo "WordPress: already installed"
 else
-
+	#core wordpress setup
 	wp core download --allow-root
 
+	#new config.php file with database credentials.
 	wp config create --allow-root \
 			--dbhost=${DB_HOST} \
 			--dbname=${DB_NAME} \

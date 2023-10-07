@@ -23,9 +23,9 @@ prune:
 	sudo docker system prune --all --force --volumes
 
 reset:
-	sudo docker stop $(docker ps -qa); sudo docker rm $(docker ps -qa); \
-	sudo docker rmi -f $(docker images -qa); sudo docker volume rm $(docker volume ls -q); \
-	sudo docker network rm $(docker network ls -q);
+	sudo docker stop $$(docker ps -qa); sudo docker rm $$(docker ps -qa); \
+	sudo docker rmi -f $$(docker images -qa); sudo docker volume rm $$(docker volume ls -q); \
+	sudo docker network rm $$(docker network ls -q);
 
 re: fclean prune all
 

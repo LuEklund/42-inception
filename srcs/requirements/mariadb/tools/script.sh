@@ -5,7 +5,7 @@
 # typically runs as the mysql user, and it requires appropriate permissions to access and modify its data directory.
 chown -R mysql:mysql /var/lib/mysql
 
-#create the sql file with the commands to change root pass, create db and user and give privileges to db to user
+#create the sql heredoc with the commands to change root pass, create db and user and give privileges to db to user
 << EOF mysqld --bootstrap --datadir=/var/lib/mysql --user=mysql
 USE mysql;
 FLUSH PRIVILEGES;
