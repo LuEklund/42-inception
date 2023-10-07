@@ -1,9 +1,8 @@
 FROM debian:bullseye
 
 RUN apt update -y && \
-	apt install php-fpm php-mysql mariadb-client wget -y
-
-RUN mkdir -p /run/php && mkdir -p /var/www/html
+	apt install php-fpm php-mysql mariadb-client wget -y && \
+	mkdir -p /run/php && mkdir -p /var/www/html
 
 COPY ./tools/www.conf /etc/php/7.4/fpm/pool.d/
 

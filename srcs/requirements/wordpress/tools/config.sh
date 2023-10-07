@@ -3,20 +3,11 @@
 chown -R www-data:www-data /var/www/html
 chmod -R 775 /var/www/html
 
-# Establish connection to mariadb before proceeding
-while ! mariadb -h${DB_HOST} -u${DB_USER} -p${DB_PASSWORD} ${DB_NAME} &>/dev/null; do
-		echo Establishing connection to database..
-    sleep 5
-done
-
-
 if [ -f "wp-config.php" ]; then
 	echo "WordPress: already installed"
 else
 
 	wp core download --allow-root
-	echo $?
-	echo "========================\nCHECKED THE STAUS OF WP\n=================================="
 
 	wp config create --allow-root \
 			--dbhost=${DB_HOST} \
